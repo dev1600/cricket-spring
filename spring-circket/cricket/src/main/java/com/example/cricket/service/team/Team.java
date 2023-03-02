@@ -2,7 +2,7 @@ package com.example.cricket.service.team;
 
 import com.example.cricket.repository.Query.PlayerMatchStatsQuery;
 import com.example.cricket.repository.Query.PlayerQuery;
-import com.example.cricket.repository.dbconnection.Connection;
+import com.example.cricket.repository.dbconnection.MySQLConnection;
 import com.example.cricket.service.player.Player;
 
 import java.util.Scanner;
@@ -23,7 +23,7 @@ public class Team {
             int playerId=dev.nextInt();
             String role = dev.next();
             teamPlayers[i] = new Player(playerId,role);
-            Connection.executeUpdateQuery(String.format(PlayerQuery.getInsertPlayerQuery(),playerId,this.teamName,0,0,role));
+            MySQLConnection.executeUpdateQuery(String.format(PlayerQuery.getInsertPlayerQuery(),playerId,this.teamName,0,0,role));
         }
     }
     public String getName() {
@@ -35,8 +35,8 @@ public class Team {
 
     }
     public void storeCurrentPlayerRunsScored(int wicketsFallen,int runsScored,int matchId){
-        System.out.println(Connection.executeUpdateQuery(String.format(PlayerMatchStatsQuery.getInsertPlayerMatchStatQuery(),matchId,teamPlayers[wicketsFallen+1].getPlayerId(),runsScored,0)));
-        System.out.println(Connection.executeUpdateQuery(String.format(PlayerQuery.getUpdatePlayerRunsScoredQuery(),runsScored, teamPlayers[wicketsFallen+1].getPlayerId())));
+        System.out.println(MySQLConnection.executeUpdateQuery(String.format(PlayerMatchStatsQuery.getInsertPlayerMatchStatQuery(),matchId,teamPlayers[wicketsFallen+1].getPlayerId(),runsScored,0)));
+        System.out.println(MySQLConnection.executeUpdateQuery(String.format(PlayerQuery.getUpdatePlayerRunsScoredQuery(),runsScored, teamPlayers[wicketsFallen+1].getPlayerId())));
 
     }
 

@@ -3,7 +3,7 @@ package com.example.cricket.service.game;
 
 
 import com.example.cricket.repository.Query.MatchResultQuery;
-import com.example.cricket.repository.dbconnection.Connection;
+import com.example.cricket.repository.dbconnection.MySQLConnection;
 import com.example.cricket.service.format.Format;
 import com.example.cricket.service.rungenerator.Chase;
 import com.example.cricket.service.rungenerator.Target;
@@ -59,12 +59,12 @@ public class Match {
     }
 
     public void storeMatchResultDB(){
-        Connection.executeUpdateQuery(String.format(MatchResultQuery.getInsertMatchResultQuery(),getSettingTeam().getTarget(),
+        MySQLConnection.executeUpdateQuery(String.format(MatchResultQuery.getInsertMatchResultQuery(),getSettingTeam().getTarget(),
                 getChasingTeam().getChasingRun(),getSettingTeam().getWicketsLeft(),getChasingTeam().getWickets(),
                 getSettingTeam().getBallsFaced(),getChasingTeam().getBallsFaced(),chasingTeam.getTeamWon().getName(),this.getMatchId()));
     }
     public void createMatchResultDB(){
-        Connection.executeUpdateQuery(String.format(MatchResultQuery.getCreateMatchResultQuery(),this.getMatchId()));
+        MySQLConnection.executeUpdateQuery(String.format(MatchResultQuery.getCreateMatchResultQuery(),this.getMatchId()));
     }
 
 }
