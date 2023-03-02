@@ -51,7 +51,9 @@ public class Player {
     public String toString() {
         return "Player{" +
                 "role='" + role + '\'' +
+                ", playerId=" + playerId +
+                ", runScored=" + runScored +
+                ", wicketsTaken=" + wicketsTaken +
                 '}';
     }
-
 }

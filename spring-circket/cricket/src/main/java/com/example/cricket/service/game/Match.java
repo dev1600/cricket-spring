@@ -5,9 +5,13 @@ package com.example.cricket.service.game;
 import com.example.cricket.repository.Query.MatchResultQuery;
 import com.example.cricket.repository.dbconnection.MySQLConnection;
 import com.example.cricket.service.format.Format;
+import com.example.cricket.service.player.Player;
 import com.example.cricket.service.rungenerator.Chase;
 import com.example.cricket.service.rungenerator.Target;
 import com.example.cricket.service.team.Team;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class Match {
     private int matchId;
@@ -23,9 +27,17 @@ public class Match {
         return matchId;
     }
 
-    public Match(int overs, int matchId) {
-        teamA = new Team("A");
-        teamB = new Team("B");
+
+    private void printDetails(List<Player> details){
+
+        for(Player p:details){
+            System.out.println(p);
+        }
+    }
+    public Match(int overs, int matchId, HashMap<String, List<Player>> details) {
+        printDetails(details.get("A"));
+        teamA = new Team("A",details.get("A"));
+        teamB = new Team("B",details.get("B"));
         format = new Format();
         this.matchId=matchId;
         format.setNoOfOvers(overs);

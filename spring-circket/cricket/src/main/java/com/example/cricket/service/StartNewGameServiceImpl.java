@@ -2,15 +2,20 @@ package com.example.cricket.service;
 
 import com.example.cricket.service.game.Match;
 import com.example.cricket.service.interfaces.StartNewGameService;
+import com.example.cricket.service.player.Player;
 import com.example.cricket.service.scoreboard.PrintScore;
 import com.example.cricket.service.team.Team;
 import com.example.cricket.service.toss.Toss;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+
 @Service
 public class StartNewGameServiceImpl implements StartNewGameService {
-    public void startNewGame(int matchId,int overs){
-        Match match=new Match(overs, matchId);
+    @Override
+    public void startNewGame(int matchId, HashMap<String, List<Player>> details){
+        Match match=new Match(20, matchId,details);
         Toss toss=new Toss(match);
         match.createMatchResultDB();
         toss.doToss();

@@ -11,5 +11,4 @@ public class CricketApplication {
 		SpringApplication.run(CricketApplication.class, args);
 		MySQLConnection.connectDB();;
 	}
-
 }
